@@ -13,6 +13,7 @@ RUN apk --update add --no-cache \
 	git \
 	py-pip \
 	jq \
+	sed \
 openssh-client
 
 ENV DOCKER_CHANNEL edge
