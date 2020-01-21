@@ -14,7 +14,15 @@ RUN apk --update add --no-cache \
 	py-pip \
 	jq \
 	sed \
-openssh-client
+	python-dev \
+	libffi-dev \
+	openssl-dev \
+	gcc \
+	libc-dev \
+	make \
+	openssh-client
+
+RUN pip install docker-compose
 
 ENV DOCKER_CHANNEL edge
 ENV DOCKER_VERSION 17.07.0-ce
