@@ -25,7 +25,7 @@ RUN apk --update add --no-cache \
 RUN pip install docker-compose
 
 ENV DOCKER_CHANNEL edge
-ENV DOCKER_VERSION 17.07.0-ce
+ENV DOCKER_VERSION 20.10.5
 
 COPY docker-entrypoint.sh /usr/local/bin/
 
