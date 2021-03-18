@@ -11,7 +11,7 @@ RUN apk --update add --no-cache \
 	bash \
 	curl \
 	git \
-	py-pip \
+	py3-pip \
 	jq \
 	sed \
 	python-dev \
