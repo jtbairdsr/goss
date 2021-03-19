@@ -26,12 +26,17 @@ RUN apk --update add --no-cache \
 	sed
 
 
-RUN curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
 ENV DOCKER_CHANNEL stable
 ENV DOCKER_VERSION 20.10.5
 
 COPY docker-entrypoint.sh /usr/local/bin/
+
+# -------------------------------------------------- setup misc stuff --------------------------------------------------
+COPY getversion.sh /usr/local/bin/getversion
+ENV MONGOMS_SYSTEM_BINARY /usr/bin/mongod
+
+RUN curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
 
 COPY install.sh /usr/local/bin/
 RUN install.sh && rm -rf /usr/local/bin/install.sh
@@ -49,10 +54,5 @@ RUN curl -L https://raw.githubusercontent.com/aelsabbahy/goss/master/extras/dgos
 ENV GOSS_PATH="/usr/local/bin/goss"
 ENV GOSS_FILES_STRATEGY="cp"
 
-# -------------------------------------------------- setup misc stuff --------------------------------------------------
-COPY getversion.sh /usr/local/bin/getversion
-ENV MONGOMS_SYSTEM_BINARY /usr/bin/mongod
-
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["sh"]
-
