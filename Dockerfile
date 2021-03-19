@@ -54,5 +54,8 @@ RUN curl -L https://raw.githubusercontent.com/aelsabbahy/goss/master/extras/dgos
 ENV GOSS_PATH="/usr/local/bin/goss"
 ENV GOSS_FILES_STRATEGY="cp"
 
+RUN ln /usr/local/bin/docker* /usr/bin && \
+	curl -L https://raw.githubusercontent.com/docker/compose-cli/main/scripts/install/install_linux.sh | sh
+
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["sh"]
