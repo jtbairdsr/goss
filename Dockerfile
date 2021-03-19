@@ -7,24 +7,28 @@ LABEL maintainer "Jonathan Baird <jtbairdsr@me.com>" architecture="AMD64/x86_64"
 # ------------------------------------------------- setup docker stuff -------------------------------------------------
 RUN apk --update add --no-cache \
 	autoconf \
-	ca-certificates \
 	bash \
+	ca-certificates \
+	cargo \
 	curl \
-	git \
-	py3-pip \
-	jq \
-	sed \
-	python-dev \
-	libffi-dev \
-	openssl-dev \
 	gcc \
+	git \
+	jq \
 	libc-dev \
+	libffi-dev \
 	make \
-	openssh-client
+	openssh-client \
+	openssl-dev \
+	py-pip \
+	python-dev \
+	python3-dev \
+	rust \
+	sed
 
-RUN pip install docker-compose
 
-ENV DOCKER_CHANNEL edge
+RUN curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+ENV DOCKER_CHANNEL stable
 ENV DOCKER_VERSION 20.10.5
 
 COPY docker-entrypoint.sh /usr/local/bin/
